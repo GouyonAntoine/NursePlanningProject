@@ -1,0 +1,59 @@
+﻿@model IEnumerable<DomainModel.Nurse>
+
+<h1>Nurses</h1>
+
+<table class="table  table-striped">
+    <thead>
+        <tr>
+            <th scope="col">
+                @Html.DisplayName("Nom")
+            </th>
+            <th scope="col">
+                @Html.DisplayName("Prénom")
+            </th>
+            <th scope="col">
+                @Html.DisplayName("E-mail")
+            </th>
+            <th scope="col">
+                @Html.DisplayName("Téléphone")
+            </th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    <div class="btn-group btn-group-sm" role="group" aria-label="">
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Détails</a>
+                        @if (item.IsActive)
+                        {
+                            <a asp-action="ActivateNurse" asp-controller="SuperAdmin" asp-route-id="@item.Id" class="btn btn-primary">Desactiver compte</a>
+                        }
+                        else
+                        {
+                            <a asp-action="ActivateNurse" asp-controller="SuperAdmin" asp-route-id="@item.Id" class="btn btn-danger">Activer compte</a>
+                        }
+                        <a asp-action="Index" asp-controller="Appointments"  asp-route-id="@item.Id" class="btn btn-info">Rdvs</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a asp-area="" asp-controller="SuperAdmin" asp-action="Index">Retour à la gestion des comptes</a>
+</div>

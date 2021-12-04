@@ -1,0 +1,44 @@
+﻿@model DomainModel.Absence
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Absence</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayName("Date de début")
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DateStart)
+            @Html.DisplayFor(model => model.DateStart.TimeOfDay)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayName("Date de fin")
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DateEnd)
+            @Html.DisplayFor(model => model.DateEnd.TimeOfDay)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Reason)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Reason)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayName("Infirmier(e)")
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nurse.LastName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Modifier</a> |
+    <a asp-action="Index">Retour à la liste des absences</a>
+</div>
